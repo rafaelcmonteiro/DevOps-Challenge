@@ -1,0 +1,7 @@
+- name: Ensure no user named 'sally' exists at all
+  community.mysql.mysql_user:
+    name: test
+    login_user: root
+    login_password: senhamaisforteinda
+    host_all: true
+    state: absent
