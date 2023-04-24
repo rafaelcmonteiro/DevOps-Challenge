@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  mysql:
+    image: mysql:5
+    container_name: mysql
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./init-files:/docker-entrypoint-initdb.d
+    env_file:
+      - ./.env
+    ports:
+      - "0.0.0.0:3306:3306" 
