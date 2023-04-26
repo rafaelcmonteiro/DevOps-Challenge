@@ -1,7 +1,10 @@
-- name: Ensure no user named 'sally' exists at all
-  community.mysql.mysql_user:
-    name: test
+- name: add sample data to database  
+  copy: src=roles/mysql/files/dump.sql dest=/tmp/dump.sql
+
+- name: Running sql script
+  mysql_db:
     login_user: root
     login_password: senhamaisforteinda
-    host_all: true
-    state: absent
+    target: /tmp/dump.sql
+    name: all 
+    state: import
