@@ -5,7 +5,7 @@ resource "aws_db_instance" "default" {
   identifier           = "${var.RDS_NAME}-db"
   engine               = "${var.DB_ENGINE}"
   engine_version       = "${var.DB_ENGINE_VERSION}"
-  instance_class       = "db.t2.micro"
+  instance_class       = "db.t3.micro"
   username             = "${var.DB_USERNAME}"
   password             = "${var.DB_PASSWORD}"
   skip_final_snapshot  = true

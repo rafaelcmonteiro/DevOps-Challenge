@@ -1,4 +1,4 @@
-create database preferences;
+create database if not exists preferences;
 
 use preferences;
 

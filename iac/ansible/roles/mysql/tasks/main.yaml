@@ -3,8 +3,9 @@
 
 - name: Running sql script
   mysql_db:
-    login_user: root
-    login_password: senhamaisforteinda
-    target: /tmp/dump.sql
-    name: all 
+    login_host: "{{ host }}"
+    login_user: "{{ user }}"
+    login_password: "{{ password }}"
+    name: all
     state: import
+    target: /tmp/dump.sql

@@ -18,13 +18,13 @@ variable "DB_ENGINE_VERSION" {
 }
 
 variable "AWS_REGION" {
-  default = ""
+  default = "us-east-2"
 }
 
 variable "AWS_ACCESS_KEY" {
-  default = ""
+  default = "AKIA5MNWQHFFTHCQK7XZ"
 }
 
 variable "AWS_SECRET_KEY" {
-  default = ""
+  default = "Hh+QHokw4UKtQUbdtxHd5vJ3PNvSRLHQal9drOJk"
 }
