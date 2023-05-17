@@ -1,6 +1,7 @@
 version: "3.4"
 services:
   mysql:
+    # Nada de novo aqui.
     image: mysql:5
     container_name: mysql
     volumes:
@@ -15,30 +16,34 @@ services:
   back:
     depends_on:
       - mysql
+    # Criando a imagem com base no Dockerfile
     build: ./back
+    # Definindo nome
     container_name: back
     env_file:
       - ./mysql/.env
-    environment:
-      SERVICE_PORT: "3000"
     ports:
       - "3000:3000"
+    # Cheguei a aplicar o depends_on para o backend, porém ele quebra do mesmo jeito.
+    # dessa forma é necessário o restart: always para subir o back novamente.
     restart: always
     networks:
       - app-tier 
   front:
     depends_on:
       - back
+    # Criando a imagem com base no Dockerfile
     build: ./front
+    # Definindo nome
     container_name: front
-    env_file:
-      - ./mysql/.env
+    # A variavel de ambiente é necessário pois, o docker-compose precisa que o front aponte para o nome do container backend.
     environment:
-      SERVICE_PORT: "3001"
+      BACKEND_HOST: "back"
     ports:
       - "3001:3001"
     networks:
       - app-tier
+# Criei uma network para manter a conexão isolada para este compose.
 networks:
   app-tier:
     driver: bridge

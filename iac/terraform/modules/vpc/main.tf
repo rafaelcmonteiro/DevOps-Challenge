@@ -58,22 +58,10 @@ resource "aws_route_table" "dev_rt" {
   }
 }
 
-# # Criação da Rota Default para Acesso à Internet
-
-# resource "aws_route" "dev_routeinternet" {
-#   route_table_id         = aws_route_table.dev_rt.id
-#   destination_cidr_block = "0.0.0.0/0"
-#   gateway_id             = aws_internet_gateway.dev_igw.id
-# }
-
-# # Associação da Subnet pública com a tabela de roteamento
-
 resource "aws_route_table_association" "dev_public_c_association" {
   subnet_id      = aws_subnet.public_subnet_c.id
   route_table_id = aws_route_table.dev_rt.id
 }
-
-# # NAT GATEWAY
 
 resource "aws_eip" "eip" {
   vpc = true

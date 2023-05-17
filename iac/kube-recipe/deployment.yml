@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: challenge
+  labels:
+    app: challenge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: challenge
+  template:
+    metadata:
+      labels:
+        app: challenge
+    spec:
+      containers:
+      - name: backend
+        image: rafaelcmonteiro1/backend:1.0.0
+        envFrom:
+          - secretRef:
+              name: db-credentials
+        ports:
+        - containerPort: 3000
+          name: backend-port
+      - name: frontend
+        image: rafaelcmonteiro1/frontend:1.0.0
+        env:
+          - name: BACKEND_PORT
+            value: "3000"
+          - name: BACKEND_HOST
+            value: "localhost"
+        ports:
+        - containerPort: 3001
