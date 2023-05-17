@@ -21,3 +21,15 @@ Para que a aplicação rode 100% no kubernetes, é necessário que ele esteja em
 ## Via helm chart
 
 Não consegui finalizar a parte do helm chart, então ele não esta 100% para ir pro kubernetes.
+
+## Diagrama documental
+
+sequenceDiagram
+    loop Every minute
+    Frontend->>Backend: send_which_web_server - apache, lighttpd or nginx
+    Backend->>Database: insert.decision
+    activate Database
+    Database-->>Backend: done
+    deactivate Database
+    Backend-->>Frontend: data saved successfully!
+    end
