@@ -24,6 +24,7 @@ Não consegui finalizar a parte do helm chart, então ele não esta 100% para ir
 
 ## Diagrama documental
 
+```mermaid
 sequenceDiagram
     loop Every minute
     Frontend->>Backend: send_which_web_server - apache, lighttpd or nginx
@@ -33,3 +34,4 @@ sequenceDiagram
     deactivate Database
     Backend-->>Frontend: data saved successfully!
     end
+```
